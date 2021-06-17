@@ -1,0 +1,91 @@
+CREATE DATABASE crimes_db;
+USE crimes_db;
+CREATE TABLE CRIMES
+(ID integer,
+STATE varchar(100),
+DISTRICT varchar(100),
+Year integer,
+Rape integer,
+Kidnapping_and_Abduction integer,
+Dowry_Deaths integer,
+Assault_on_women integer,
+Insult_to_modesty_of_Women integer,
+Cruelty_by_Inlaws integer,
+Importation_of_Girls integer);
+
+
+/*To find out year wise total count of each type of crimes*/
+SELECT year, sum(rape) as total_rapes, sum(Kidnapping_and_Abduction) as total_abductions, sum(Dowry_Deaths) as total_dowries, sum(Assault_on_women) as total_assaults,sum(Insult_to_modesty_of_Women) as total_insults,
+sum(Cruelty_by_Inlaws) as total_domesticviolence, sum(Importation_of_Girls) as total_importation
+from crimes
+group by year;
+
+/*Top 5 states with the highest rape cases during 2001-2014*/
+Select state,sum(rape)as total_rapes
+from crimes
+group by state Order by sum(rape) desc limit 5;
+
+/*Bottom 5 states with the lowest rape cases during 2001-2014*/
+Select state,sum(rape)as total_rapes
+from crimes
+group by state Order by sum(rape) asc limit 5;
+
+/*Top 5 states with the highest kidnapping & abduction cases during 2001-2014*/
+Select state,sum(Kidnapping_and_Abduction)as total_abductions
+from crimes
+group by state Order by sum(Kidnapping_and_Abduction) desc limit 5;
+
+/*Bottom 5 states with the lowest kidnapping & abduction cases during 2001-2014*/
+Select state,sum(Kidnapping_and_Abduction)as total_abductions
+from crimes
+group by state Order by sum(Kidnapping_and_Abduction) limit 5;
+
+/*Top 5 states with the highest dowry deaths cases during 2001-2014*/
+Select state,sum(Dowry_Deaths)as total_dowry_deaths
+from crimes
+group by state Order by 2 desc limit 5;
+
+/*Bottom 5 states with the lowest dowry deaths cases during 2001-2014*/
+Select state,sum(Dowry_Deaths)as total_dowry_deaths
+from crimes
+group by state Order by 2 limit 5;
+
+/*Top 5 states with the highest number of assaults cases during 2001-2014*/
+Select state,sum(Assault_on_women)as total_assaults
+from crimes
+group by state Order by sum(Assault_on_women) desc limit 5;
+
+/*Bottom 5 states with the lowest number of assaults cases during 2001-2014*/
+Select state,sum(Assault_on_women)as total_assaults
+from crimes
+group by state Order by sum(Assault_on_women) asc limit 5;
+
+/*Top 5 states with the highest insult to modesty cases during 2001-2014*/
+Select state,sum(Insult_to_modesty_of_Women)as total_insults
+from crimes
+group by state Order by sum(Insult_to_modesty_of_Women) desc limit 5;
+
+/*Bottom 5 states with the lowest insult to modesty cases during 2001-2014*/
+Select state,sum(Insult_to_modesty_of_Women)as total_insults
+from crimes
+group by state Order by sum(Insult_to_modesty_of_Women) limit 5;
+
+/*Top 5 states with the highest domestic violence cases during 2001-2014*/
+Select state,sum(Cruelty_by_Inlaws)as total_cruelty
+from crimes
+group by state Order by sum(Cruelty_by_Inlaws) desc limit 5;
+
+/*Bottom 5 states with the lowest domestic violence cases during 2001-2014*/
+Select state,sum(Cruelty_by_Inlaws)as total_cruelty
+from crimes
+group by state Order by sum(Cruelty_by_Inlaws) asc limit 5;
+
+/*Top 5 states with the highest importations cases during 2001-2014*/
+Select state,sum(Importation_of_Girls)as total_importations
+from crimes
+group by state Order by 2 desc limit 5;
+
+/*Bottom 5 states with the lowest importation cases during 2001-2014*/
+Select state,sum(Importation_of_Girls)as total_importations
+from crimes
+group by state Order by 2 asc limit 5;
